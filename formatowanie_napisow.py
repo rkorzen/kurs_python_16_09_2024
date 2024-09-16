@@ -44,6 +44,5 @@ p2 = a2 * b2
 
 template = "a: {:^6}, b: {:<6}, p: {:12.3f}"
 
-
 print(template.format(a1, b1, p1))
 print(template.format(a2, b2, p2))

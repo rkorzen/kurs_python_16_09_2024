@@ -165,3 +165,177 @@ dane = "imie: " + imie + " nazwisko: " + nazwisko
 print(dane)
 
 ```
+
+## Kolekcje
+
+### Napisy
+
+typ niemutowalny - nie da sie zmienic istniejacego napisu
+
+napis = "ala ma kota"
+
+- kolekcja moze miec porzadek (ale nie musi)
+- w pythonie indeksujemy od 0
+
+```
+ 0123456789
+"ala ma kot"
+
+literce m odpowiada index 4
+
+napis[4]
+napis[9]
+napis[-1]
+```
+### slicing
+
+kolekcja[start*, stop, krok]
+
+
+## Krotka - tuple
+
+()
+
+krotka = ("A", "l", "a", " ", "k", "o")
+
+krotka = ("napis 1", "napis 2", 10, 20)
+
+osoba = ("Rafał", "Korzniewski", 16, 234.2)
+
+template = "a: {:^6}, b: {:<6}, p: {:12.3f}"
+
+## lista - list
+kolekcja mutowalna - mozna zmienia ja - np podmieniac elementy
+
+[]
+
+
+## zbior - set
+
+mutowalna kolekcja unikalnych obiektow (ktore musza byc hashowalne)
+
+{1, 2, 3}
+{2, 3, 4}
+set([1, 2, 3])
+
+set() # - pusty zbior a nie {}
+
+## słownik - dict
+
+
+{} -  pusty slownik
+{1: "a", 2: "b"}
+
+
+## wyrażenia warunkowe
+
+```
+if <warunek>:
+    <blok instrukcji>
+
+<blok c instrucji>
+
+#################
+
+if <warunek>:
+    <blok instrukcji>
+else:
+    <block b instrukcji>
+
+<blok c instrucji>
+
+
+######################
+
+
+if <warunek>:
+    <blok instrukcji>
+elif <inny warunek>:
+    <block b instrukcji>
+
+<blok c instrucji>
+
+
+#######
+
+
+if <warunek>:
+    <blok instrukcji>
+elif <inny warunek>:
+    <block b instrukcji>
+elif <inny warunek>:
+    <block b1 instrukcji>
+...
+else:
+    <block instrukcji ...>
+<blok c instrucji>
+
+```
+
+### structural matchin pattern
+
+match:
+    case <warunki>:
+        ...
+    case _:
+        ...
+
+
+### wciecia 
+
+- co do zasady 4 spacje
+
+inny jezyk:
+```
+if (len(napis) < 15) {
+    print(napis); 
+    } 
+else {
+    print(napis[:15]);
+    print(napis[15:]);
+}
+```
+
+```
+if len(napis) < 15:
+    print(napis)
+else:
+    print(napis[:15])
+    print(napis[15:])
+```
+
+## Pętle
+
+### while
+
+```
+while <warunek>:
+    <blok instrukcji>
+
+
+while <warunek>:
+    <blok instrukcji>
+else:
+    <blok instrukcji jesli nie bylo przerwania petli>
+
+```
+
+### for
+
+```
+for el in kolekcja:
+    <blok instrukcji>
+
+```
+
+
+### zadanie
+
+napisz program, ktory bedzie przyjmowal od uzytkownika liczby (konczy przyjmowanie po wprowadzeniu znaku q).
+wypisz takie informacje:
+
+liczb bylo: 22
+z czego unikalnych bylo: 2
+srednia wynosi: 2.3
+
+len()
