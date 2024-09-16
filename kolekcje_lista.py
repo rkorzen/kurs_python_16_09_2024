@@ -1,100 +1,88 @@
+import copy
+
+# Definiujemy szablon do formatowania wyjścia
 template = "a: {:^6}, b: {:<6}, p: {:12.3f}"
-#         0        1              2   3 
-osoba1 = ["Rafał", "Korzniewski", 16, 234.2]
+
+# Definiujemy osoby
+osoba1 = ["Rafał", "Korzeniewski", 16, 234.2]
 osoba2 = ["Adam", "Sodowy", 16, 23.2]
 osoba3 = ["A", "B", 16, 23.2]
 
+# Wybór osoby do formatowania
 osoba = osoba3
 
+# Formatowanie wybranej osoby
 print(template.format(osoba[0], osoba[1], osoba[2], osoba[3]))
 
+# Formatowanie innych osób
 print(template.format(*osoba1))
 
+# Wyświetlenie elementów co drugi od początku
 print(osoba1[::2])
 
-
+# Znalezienie indeksu imienia "Rafał"
 print(osoba1.index("Rafał"))
 
+# Modyfikacja listy osoba1
 print(osoba1)
 osoba1[0] = "Xxx"
 print(osoba1)
-# a, b, *c = 1, 2, 3, 4
 
-# print(a, b, c)
-
+# Operacje na listach
 print([1, 2, 3] + [4, 5, 6])
 
+# Dodawanie elementu do listy osoba1
 osoba1.append(100)
 print(osoba1)
 
-#        0  1  2  3 
+# Operacje na liście 'lista'
 lista = [1, 2, 3, 4]
-
 lista.append(6)
-
-#0  1  2  3  4
-[1, 2, 3, 4, 6]
-
 print(lista)
 
+# Wstawianie elementu na początku listy
 lista.insert(0, 7)
+print(lista)
 
-#0  1  2  3  4, 5
-[7, 1, 2, 3, 4, 6]
-
+# Sprawdzenie dostępnych metod dla listy
 print(dir(lista))
+
+# Usuwanie elementu
 lista.remove(7)
+print(lista)
 
-#0  1  2  3  4,
-[1, 2, 3, 4, 6]
-
-
-# konsekwencje mutowalnosci
-
+# Przykład mutowalności list
 x = [1, 2, 3]
 y = x
 x.append(10)
 y.append(11)
-
 print(x, y)
 
-
+# Kopiowanie listy
 z = x.copy()
 x.remove(1)
-
 print(x, y, z)
 
-
+# Operacje na zagnieżdżonych listach
 a = [1, 2]
 b = [3, 4, a]  # [3, 4, [1, 2]]
 c = b
 
-
 a.append(10)
-
 print(a, b, c)
 
-# 
-print()
-
+# Kopiowanie płytkie listy
 a = [1, 2]
 b = [3, 4, a]  # [3, 4, [1, 2]]
 c = b.copy()
 
 a.append(10)
-
 print(a, b, c)
 
-#
-
-import copy
-
-print()
-
+# Kopiowanie głębokie listy
 a = [1, 2]
 b = [3, 4, a]  # [3, 4, [1, 2]]
 c = copy.deepcopy(b)
 
 a.append(10)
-
 print(a, b, c)
