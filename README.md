@@ -1885,3 +1885,50 @@ else:
   - Sprawdzane jest, czy lista `liczby` nie jest pusta przed obliczeniem średniej, aby uniknąć dzielenia przez zero.
   - Wynik średniej jest formatowany do dwóch miejsc po przecinku.
 
+
+
+# Funkcje w Pythonie
+
+## definicje
+
+```python
+
+def nazwa_funkcji():  # sygnatura funkcji
+    <cialo funkcji> 
+
+
+def nazwa_funkcji():
+     return None
+
+
+def nazwa_funkcji():
+     return 10
+
+
+def nazwa_funkcji():
+     return 10, 20, 30
+
+
+def nazwa_funkcji():
+    data = now()  # symbolicznie obecna data
+    if data.rok > 2020:
+      return 200
+    return 10
+
+
+def suma(a, b):
+     return a + b
+
+nazwa_funkcji # obiekt funkcji
+nazwa_funlcji()  # wywolanie funcji
+
+print
+print()
+
+
+suma()  # zakonczy sie bledem
+suma(1)
+
+suma(1, 2)
+
+suma(1, 2, 3)
