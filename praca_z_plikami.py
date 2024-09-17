@@ -24,6 +24,11 @@ with open("cwiczenie_01.py") as f:
         print(line, end="")
 
 
+with open("cwiczenie_01.py") as f:
+    print(dir(f))
+    for line in f:
+        print(line, end="")
+
 with open("data/dane2.txt", "wb") as f:
     f.write("1 2 3 4 5 6\n".encode())
     f.write("ą ć ź ł 6\n".encode())
