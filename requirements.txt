@@ -1,1 +1,12 @@
-sympy==1.13.2
+flake8
+mypy
+black
+
+
+requests
+numpy
+scipy
+pandas
+matplotlib
+plotly
+seaborn
