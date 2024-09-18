@@ -1889,46 +1889,624 @@ else:
 
 # Funkcje w Pythonie
 
-## definicje
+Funkcje w Pythonie to bloki kodu, które wykonują określone operacje. Mogą przyjmować dane wejściowe w postaci argumentów i zwracać wynik. Funkcje pozwalają na ponowne użycie kodu i zwiększają czytelność oraz modularność programu.
+
+## Definicja funkcji
+
+Funkcję definiuje się za pomocą słowa kluczowego `def`, po którym następuje nazwa funkcji oraz para nawiasów, w której można zdefiniować argumenty.
 
 ```python
-
-def nazwa_funkcji():  # sygnatura funkcji
-    <cialo funkcji> 
-
-
 def nazwa_funkcji():
-     return None
+    # ciało funkcji
+    print("To jest funkcja!")
+```
 
+## Wywołanie funkcji
 
-def nazwa_funkcji():
-     return 10
+Funkcję wywołuje się, używając jej nazwy oraz dodając nawiasy, np.:
 
+```python
+nazwa_funkcji()
+```
 
-def nazwa_funkcji():
-     return 10, 20, 30
+## Argumenty funkcji
 
+Funkcje mogą przyjmować argumenty, które umożliwiają przekazywanie danych wejściowych.
 
-def nazwa_funkcji():
-    data = now()  # symbolicznie obecna data
-    if data.rok > 2020:
-      return 200
-    return 10
+###Argumenty pozycyjne
 
+Argumenty pozycyjne to takie, które przekazywane są do funkcji według ich kolejności.
 
+```python
 def suma(a, b):
-     return a + b
+    return a + b
 
-nazwa_funkcji # obiekt funkcji
-nazwa_funlcji()  # wywolanie funcji
+print(suma(3, 5))  # wynik: 8
+```
 
-print
-print()
+### Argumenty nazwane (keyword arguments)
+
+Argumenty nazwane pozwalają na przekazywanie wartości argumentów poprzez ich nazwy, co zwiększa czytelność kodu.
+
+```python
+def powitanie(imie, jezyk="polski"):
+    if jezyk == "polski":
+        print(f"Cześć, {imie}!")
+    elif jezyk == "angielski":
+        print(f"Hello, {imie}!")
+        
+powitanie(imie="Rafał", jezyk="angielski")  # wynik: Hello, Rafał!
+```
+
+### `*args` i `**kwargs`
+
+- `*args` służy do przekazywania dowolnej liczby argumentów pozycyjnych.
+- `**kwargs` służy do przekazywania dowolnej liczby argumentów nazwanych.
+
+```python
+def wielkie_suma(*args):
+    return sum(args)
+
+print(wielkie_suma(1, 2, 3, 4, 5))  # wynik: 15
+
+def pokaz_slownik(**kwargs):
+    for klucz, wartosc in kwargs.items():
+        print(f"{klucz}: {wartosc}")
+
+pokaz_slownik(imie="Rafał", wiek=30)  
+# wynik:
+# imie: Rafał
+# wiek: 30
+```
+
+### Rekurencja
+
+Rekurencja to technika, w której funkcja wywołuje samą siebie. Każda rekurencja musi mieć warunek zakończenia, aby nie prowadziła do nieskończonego wywołania.
+
+Przykład funkcji rekurencyjnej obliczającej silnię liczby:
+
+```python
+def silnia(n):
+    if n == 0:
+        return 1
+    else:
+        return n * silnia(n - 1)
+
+print(silnia(5))  # wynik: 120
+```
+
+### Funkcje anonimowe (lambda)
+
+Funkcje anonimowe (znane jako funkcje lambda) to krótkie, jednowierszowe funkcje, które można zdefiniować "w locie" bez nadawania im nazwy.
+
+Składnia funkcji lambda:
+
+```python
+lambda argumenty: wyrażenie
+```
+
+Przykład:
+
+```python
+mnozenie = lambda x, y: x * y
+print(mnozenie(3, 4))  # wynik: 12
+```
+
+Funkcje lambda są często używane w połączeniu z funkcjami takimi jak `map()`, `filter()` czy `sorted()`.
+
+Przykład użycia funkcji lambda z `sorted()`:
+
+```python
+lista_par = [(1, 2), (3, 1), (5, 0)]
+lista_par_posortowana = sorted(lista_par, key=lambda x: x[1])
+print(lista_par_posortowana)  # wynik: [(5, 0), (3, 1), (1, 2)]
+```
+
+### Podsumowanie
+
+- **Funkcje** są definiowane za pomocą słowa kluczowego `def`.
+- **Argumenty pozycyjne** i **nazwane** mogą być używane do przekazywania danych do funkcji.
+- **`*args` i `**kwargs`** pozwalają na przekazywanie zmiennej liczby argumentów.
+- **Rekurencja** to technika wywoływania funkcji przez samą siebie.
+- **Funkcje lambda** to jednowierszowe funkcje anonimowe, przydatne w prostych przypadkach.
+- Funkcje to obiekty jak każdy inny w Pythonie - mogą być umieszczane w listach, słownikach. Mogą być przekazywane jako argumenty do innych funkcji.
 
 
-suma()  # zakonczy sie bledem
-suma(1)
+# Klasy w Pythonie
 
-suma(1, 2)
+Klasy w Pythonie to narzędzie programowania obiektowego, które pozwala na tworzenie własnych typów danych, łączenie danych (atrybutów) i zachowań (metod) w jednym obiekcie. Klasy są szablonami, na podstawie których można tworzyć obiekty (instancje).
 
-suma(1, 2, 3)
+## Definiowanie klasy
+
+Klasy definiuje się za pomocą słowa kluczowego `class`, po którym następuje nazwa klasy:
+
+```python
+class Samochod:
+    pass
+```
+
+Powyższa klasa jest pusta i nie zawiera żadnych atrybutów ani metod. Aby stworzyć instancję tej klasy:
+
+```python
+moj_samochod = Samochod()
+```
+
+## Atrybuty klasowe i instancyjne
+
+- **Atrybuty klasowe** to zmienne wspólne dla wszystkich instancji klasy. Są definiowane bezpośrednio w ciele klasy.
+- **Atrybuty instancyjne** to zmienne, które są unikalne dla każdej instancji klasy i są definiowane w konstruktorze klasy.
+
+Konstruktor w Pythonie to metoda specjalna `__init__()`, która jest wywoływana podczas tworzenia nowej instancji.
+
+Przykład:
+
+```python
+class Samochod:
+    # Atrybut klasowy
+    ilosc_kol = 4
+    
+    # Konstruktor (definicja atrybutów instancyjnych)
+    def __init__(self, marka, model):
+        self.marka = marka  # Atrybut instancji
+        self.model = model  # Atrybut instancji
+```
+
+Aby utworzyć obiekt na podstawie tej klasy:
+
+```python
+moj_samochod = Samochod("Toyota", "Corolla")
+print(moj_samochod.marka)  # Wynik: Toyota
+print(moj_samochod.ilosc_kol)  # Wynik: 4 (dostęp do atrybutu klasowego)
+```
+
+## Metody
+
+Metody to funkcje zdefiniowane wewnątrz klasy, które działają na atrybutach instancji. Pierwszym argumentem każdej metody musi być `self`, który reprezentuje bieżącą instancję klasy.
+
+Przykład metody:
+
+```python
+class Samochod:
+    ilosc_kol = 4
+    
+    def __init__(self, marka, model):
+        self.marka = marka
+        self.model = model
+
+    # Definicja metody
+    def opis(self):
+        return f"Samochód marki {self.marka}, model {self.model}"
+    
+moj_samochod = Samochod("Toyota", "Corolla")
+print(moj_samochod.opis())  # Wynik: Samochód marki Toyota, model Corolla
+```
+
+## Property, getter i setter
+
+W Pythonie możemy używać właściwości (`@property`), aby kontrolować dostęp do atrybutów. Właściwości pozwalają definiować specjalne metody, które działają jak gettery i settery, umożliwiając kontrolę nad tym, jak wartości są odczytywane lub modyfikowane.
+
+### Getter
+
+Getter to metoda, która pozwala na pobranie wartości atrybutu.
+
+```python
+class Samochod:
+    def __init__(self, marka):
+        self._marka = marka  # Użycie prywatnej zmiennej
+    
+    @property
+    def marka(self):
+        return self._marka
+    
+moj_samochod = Samochod("Toyota")
+print(moj_samochod.marka)  # Wynik: Toyota
+```
+
+### Setter
+
+Setter to metoda, która pozwala na ustawienie wartości atrybutu z kontrolą logiki biznesowej.
+
+```python
+class Samochod:
+    def __init__(self, marka):
+        self._marka = marka
+    
+    @property
+    def marka(self):
+        return self._marka
+
+    @marka.setter
+    def marka(self, nowa_marka):
+        if nowa_marka != "":
+            self._marka = nowa_marka
+        else:
+            raise ValueError("Marka nie może być pusta")
+    
+moj_samochod = Samochod("Toyota")
+moj_samochod.marka = "Honda"  # Zmiana marki
+print(moj_samochod.marka)  # Wynik: Honda
+```
+
+## Dziedziczenie
+
+Dziedziczenie to mechanizm, który pozwala tworzyć nowe klasy na podstawie istniejących, dziedzicząc ich atrybuty i metody. Dzięki temu możemy tworzyć bardziej specjalizowane klasy.
+
+Przykład:
+
+```python
+class Pojazd:
+    def __init__(self, marka):
+        self.marka = marka
+    
+    def opis(self):
+        return f"Pojazd marki {self.marka}"
+    
+class Samochod(Pojazd):
+    def __init__(self, marka, model):
+        super().__init__(marka)  # Wywołanie konstruktora klasy bazowej
+        self.model = model
+    
+    def opis(self):
+        return f"Samochód marki {self.marka}, model {self.model}"
+
+moj_samochod = Samochod("Toyota", "Corolla")
+print(moj_samochod.opis())  # Wynik: Samochód marki Toyota, model Corolla
+```
+
+W powyższym przykładzie klasa `Samochod` dziedziczy po klasie `Pojazd`, co oznacza, że dziedziczy również jej atrybuty i metody.
+
+## Przeciążanie operatorów
+
+W Pythonie możemy przeciążać operatory (np. `+`, `-`, `==`) dla własnych klas, definiując specjalne metody takie jak `__add__`, `__eq__`, itp.
+
+Przykład przeciążenia operatora dodawania:
+
+```python
+class Punkt:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __add__(self, inny):
+        return Punkt(self.x + inny.x, self.y + inny.y)
+    
+    def __repr__(self):
+        return f"Punkt({self.x}, {self.y})"
+
+punkt1 = Punkt(1, 2)
+punkt2 = Punkt(3, 4)
+
+wynik = punkt1 + punkt2
+print(wynik)  # Wynik: Punkt(4, 6)
+```
+
+## Przeciążenie operatora porównania
+
+Przeciążając operator `__eq__`, możemy kontrolować sposób porównywania obiektów:
+
+```python
+class Punkt:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __eq__(self, inny):
+        return self.x == inny.x and self.y == inny.y
+
+punkt1 = Punkt(1, 2)
+punkt2 = Punkt(1, 2)
+punkt3 = Punkt(3, 4)
+
+print(punkt1 == punkt2)  # Wynik: True
+print(punkt1 == punkt3)  # Wynik: False
+```
+
+# Podsumowanie
+
+- **Klasy** definiują własne typy danych i pozwalają na tworzenie obiektów.
+- **Atrybuty klasowe** są wspólne dla wszystkich instancji, a **atrybuty instancyjne** są unikalne dla każdej instancji.
+- **Metody** to funkcje działające na obiektach klasy.
+- **Property, getter i setter** umożliwiają kontrolę dostępu do atrybutów.
+- **Dziedziczenie** pozwala na tworzenie nowych klas na podstawie istniejących.
+- **Przeciążanie operatorów** umożliwia dostosowanie sposobu, w jaki operatory działają na obiektach danej klasy.
+
+# Prosty interfejs graficzny - wprowadzenie do Tkinter
+
+## 1. Czym jest Tkinter?
+
+Tkinter to standardowa biblioteka Pythona służąca do tworzenia interfejsów graficznych użytkownika (GUI). Jest to interfejs do zestawu narzędzi **Tk GUI toolkit**, który jest dostępny na różnych platformach, takich jak Windows, macOS i Linux. Tkinter pozwala na tworzenie aplikacji z interfejsem graficznym bez konieczności instalowania dodatkowych pakietów.
+
+## 2. Podstawy korzystania z Tkinter
+
+### 2.1. Importowanie biblioteki
+
+Aby korzystać z Tkinter, należy zaimportować go w swoim kodzie:
+
+```python
+import tkinter as tk
+```
+
+Alternatywnie, można zaimportować wszystko z modułu `tkinter`:
+
+```python
+from tkinter import *
+```
+
+Jednak zaleca się korzystanie z pierwszej formy, aby uniknąć konfliktów nazw.
+
+### 2.2. Tworzenie prostego okna
+
+Poniższy przykład pokazuje, jak utworzyć proste okno aplikacji:
+
+```python
+import tkinter as tk
+
+# Tworzenie głównego okna
+root = tk.Tk()
+
+# Ustawienie tytułu okna
+root.title("Moja pierwsza aplikacja")
+
+# Uruchomienie pętli głównej
+root.mainloop()
+```
+
+Po uruchomieniu tego kodu pojawi się puste okno z tytułem "Moja pierwsza aplikacja".
+
+## 3. Podstawowe widgety w Tkinter
+
+Widgety to elementy interfejsu użytkownika, takie jak przyciski, etykiety, pola tekstowe itp.
+
+### 3.1. Etykieta (`Label`)
+
+Etykieta służy do wyświetlania tekstu lub obrazów.
+
+```python
+label = tk.Label(root, text="Witaj w Tkinter!")
+label.pack()
+```
+
+### 3.2. Przycisk (`Button`)
+
+Przycisk pozwala użytkownikowi na wykonanie akcji po kliknięciu.
+
+```python
+def say_hello():
+    print("Cześć!")
+
+button = tk.Button(root, text="Kliknij mnie", command=say_hello)
+button.pack()
+```
+
+### 3.3. Pole tekstowe (`Entry`)
+
+Pole tekstowe umożliwia wprowadzanie krótkiego tekstu przez użytkownika.
+
+```python
+entry = tk.Entry(root)
+entry.pack()
+```
+
+### 3.4. Pole tekstowe wieloliniowe (`Text`)
+
+Umożliwia wprowadzanie wieloliniowego tekstu.
+
+```python
+text = tk.Text(root, height=5, width=30)
+text.pack()
+```
+
+### 3.5. Pole wyboru (`Checkbutton`)
+
+Pozwala na zaznaczenie lub odznaczenie opcji.
+
+```python
+var = tk.IntVar()
+
+check = tk.Checkbutton(root, text="Akceptuję warunki", variable=var)
+check.pack()
+```
+
+### 3.6. Przycisk radiowy (`Radiobutton`)
+
+Pozwala użytkownikowi wybrać jedną opcję z grupy.
+
+```python
+var = tk.StringVar()
+var.set("Opcja 1")
+
+radio1 = tk.Radiobutton(root, text="Opcja 1", variable=var, value="Opcja 1")
+radio2 = tk.Radiobutton(root, text="Opcja 2", variable=var, value="Opcja 2")
+radio1.pack()
+radio2.pack()
+```
+
+### 3.7. Lista rozwijana (`OptionMenu`)
+
+Pozwala na wybór jednej opcji z listy.
+
+```python
+options = ["Opcja 1", "Opcja 2", "Opcja 3"]
+selected_option = tk.StringVar()
+selected_option.set(options[0])
+
+dropdown = tk.OptionMenu(root, selected_option, *options)
+dropdown.pack()
+```
+
+## 4. Zarządzanie rozmieszczeniem widgetów
+
+Tkinter oferuje trzy główne menedżery układu:
+
+### 4.1. Metoda `pack()`
+
+Prosty sposób na umieszczanie widgetów w oknie.
+
+```python
+label.pack()
+button.pack()
+```
+
+Parametry metody `pack()`:
+
+- `side`: określa, po której stronie okna umieścić widget (`TOP`, `BOTTOM`, `LEFT`, `RIGHT`).
+- `fill`: określa, czy widget ma wypełniać dostępne miejsce (`X`, `Y`, `BOTH`).
+- `expand`: jeśli `True`, widget rozszerzy się, aby wypełnić dostępne miejsce.
+
+### 4.2. Metoda `grid()`
+
+Pozwala na układanie widgetów w formie tabeli.
+
+```python
+label.grid(row=0, column=0)
+entry.grid(row=0, column=1)
+button.grid(row=1, column=0, columnspan=2)
+```
+
+Parametry metody `grid()`:
+
+- `row`: numer wiersza.
+- `column`: numer kolumny.
+- `columnspan`: liczba kolumn, które widget ma zajmować.
+- `rowspan`: liczba wierszy, które widget ma zajmować.
+
+### 4.3. Metoda `place()`
+
+Pozwala na dokładne pozycjonowanie widgetów przy użyciu współrzędnych x i y.
+
+```python
+label.place(x=50, y=100)
+```
+
+## 5. Obsługa zdarzeń i funkcje zwrotne
+
+Możesz przypisać funkcje zwrotne do różnych zdarzeń, takich jak kliknięcia myszy czy naciśnięcia klawiszy.
+
+### 5.1. Przykład obsługi zdarzeń
+
+```python
+def on_button_click():
+    print("Przycisk został kliknięty")
+
+button = tk.Button(root, text="Kliknij mnie", command=on_button_click)
+button.pack()
+```
+
+### 5.2. Zdarzenia klawiatury i myszy
+
+Możesz użyć metody `bind()` do obsługi zdarzeń.
+
+```python
+def on_key_press(event):
+    print(f"Naciśnięto klawisz: {event.char}")
+
+root.bind('<Key>', on_key_press)
+```
+
+## 6. Przykładowa aplikacja: Kalkulator
+
+Poniżej znajduje się prosty przykład kalkulatora stworzonego w Tkinter.
+
+```python
+import tkinter as tk
+
+def calculate():
+    try:
+        result = eval(entry.get())
+        label_result.config(text=f"Wynik: {result}")
+    except Exception as e:
+        label_result.config(text="Błąd")
+
+root = tk.Tk()
+root.title("Kalkulator")
+
+entry = tk.Entry(root, width=30)
+entry.grid(row=0, column=0, columnspan=4)
+
+button_calc = tk.Button(root, text="Oblicz", command=calculate)
+button_calc.grid(row=1, column=0, columnspan=4)
+
+label_result = tk.Label(root, text="Wynik: ")
+label_result.grid(row=2, column=0, columnspan=4)
+
+root.mainloop()
+```
+
+## 7. Dostosowywanie wyglądu
+
+### 7.1. Ustawianie parametrów widgetów
+
+Każdy widget posiada wiele parametrów, które można ustawić.
+
+```python
+label = tk.Label(root, text="Witaj w Tkinter!", font=("Arial", 16), fg="blue")
+label.pack()
+```
+
+Parametry często używane:
+
+- `font`: czcionka i jej rozmiar.
+- `fg`: kolor tekstu (foreground).
+- `bg`: kolor tła (background).
+- `width`, `height`: szerokość i wysokość widgetu.
+
+### 7.2. Style (`ttk`)
+
+Moduł `tkinter.ttk` oferuje ulepszone widgety z możliwością stylizacji.
+
+```python
+import tkinter.ttk as ttk
+
+button = ttk.Button(root, text="Kliknij mnie")
+button.pack()
+```
+
+## 8. Tworzenie menu
+
+Możesz dodać menu do swojej aplikacji.
+
+```python
+def new_file():
+    print("Nowy plik")
+
+def open_file():
+    print("Otwórz plik")
+
+menubar = tk.Menu(root)
+
+file_menu = tk.Menu(menubar, tearoff=0)
+file_menu.add_command(label="Nowy", command=new_file)
+file_menu.add_command(label="Otwórz", command=open_file)
+file_menu.add_separator()
+file_menu.add_command(label="Zakończ", command=root.quit)
+
+menubar.add_cascade(label="Plik", menu=file_menu)
+
+root.config(menu=menubar)
+```
+
+## 9. Okna dialogowe
+
+Tkinter oferuje standardowe okna dialogowe, takie jak wybór pliku czy komunikaty.
+
+### 9.1. Wybór pliku
+
+```python
+from tkinter import filedialog
+
+filename = filedialog.askopenfilename(title="Wybierz plik")
+print(f"Wybrano plik: {filename}")
+```
+
+### 9.2. Komunikat
+
+```python
+from tkinter import messagebox
+
+messagebox.showinfo("Informacja", "To jest komunikat informacyjny")
+```
+
+## 10. Podsumowanie
+
+Tkinter to potężne narzędzie do tworzenia aplikacji z interfejsem graficznym w Pythonie. Jego zaletą jest to, że jest dostępny w standardowej bibliotece Pythona, co oznacza, że nie wymaga instalowania dodatkowych pakietów. Dzięki różnorodnym widgetom i możliwościom dostosowywania, można stworzyć zarówno proste, jak i bardziej zaawansowane aplikacje.
+
